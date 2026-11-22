@@ -1,0 +1,4 @@
+Model,Air Tidak Layak Salah Diprediksi Layak,Air Layak Salah Diprediksi Tidak Layak
+Baseline,45,173
+Optimized,65,151
+Safety Optimized,18,203

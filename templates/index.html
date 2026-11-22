@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Water Potability Classification</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="icon">💧</div>
+
+        <h1>Water Quality Prediction</h1>
+
+        <p>
+            Sistem Klasifikasi Potabilitas Air
+            Menggunakan Random Forest
+        </p>
+    </header>
+
+
+    <section class="card">
+
+        <h2>Input Parameter Kualitas Air</h2>
+
+        <p class="subtitle">
+            Masukkan parameter fisikokimia air untuk
+            melakukan proses klasifikasi.
+        </p>
+
+        <form method="POST">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>pH</label>
+                    <input type="number" step="any"
+                           name="ph"
+                           placeholder="Contoh: 7.0">
+                </div>
+
+                <div class="form-group">
+                    <label>Hardness</label>
+                    <input type="number" step="any"
+                           name="Hardness"
+                           placeholder="Contoh: 200">
+                </div>
+
+                <div class="form-group">
+                    <label>Solids</label>
+                    <input type="number" step="any"
+                           name="Solids"
+                           placeholder="Contoh: 22000">
+                </div>
+
+                <div class="form-group">
+                    <label>Chloramines</label>
+                    <input type="number" step="any"
+                           name="Chloramines"
+                           placeholder="Contoh: 7">
+                </div>
+
+                <div class="form-group">
+                    <label>Sulfate</label>
+                    <input type="number" step="any"
+                           name="Sulfate"
+                           placeholder="Contoh: 330">
+                </div>
+
+                <div class="form-group">
+                    <label>Conductivity</label>
+                    <input type="number" step="any"
+                           name="Conductivity"
+                           placeholder="Contoh: 420">
+                </div>
+
+                <div class="form-group">
+                    <label>Organic Carbon</label>
+                    <input type="number" step="any"
+                           name="Organic_carbon"
+                           placeholder="Contoh: 14">
+                </div>
+
+                <div class="form-group">
+                    <label>Trihalomethanes</label>
+                    <input type="number" step="any"
+                           name="Trihalomethanes"
+                           placeholder="Contoh: 66">
+                </div>
+
+                <div class="form-group">
+                    <label>Turbidity</label>
+                    <input type="number" step="any"
+                           name="Turbidity"
+                           placeholder="Contoh: 4">
+                </div>
+
+            </div>
+
+            <p class="hint">
+                Kolom boleh dikosongkan. Sistem akan
+                menangani nilai kosong menggunakan median.
+            </p>
+
+            <button type="submit">
+                PREDIKSI KUALITAS AIR
+            </button>
+
+        </form>
+
+    </section>
+
+
+    {% if error %}
+
+    <section class="result error">
+
+        <h2>Terjadi Kesalahan</h2>
+
+        <p>{{ error }}</p>
+
+    </section>
+
+    {% endif %}
+
+
+    {% if result %}
+
+    <section class="result {{ result.class }}">
+
+        <h2>Hasil Prediksi</h2>
+
+        <h1>{{ result.status }}</h1>
+
+        <p>{{ result.description }}</p>
+
+        <div class="probability">
+
+            Probabilitas Prediksi
+
+            <strong>{{ probability }}%</strong>
+
+        </div>
+
+        <p class="warning">
+            Hasil ini merupakan prediksi model berdasarkan
+            dataset penelitian dan bukan pengganti pengujian
+            laboratorium.
+        </p>
+
+    </section>
+
+    {% endif %}
+
+
+    <footer>
+
+        <p>
+            Random Forest Classification |
+            Water Potability Research
+        </p>
+
+        <p>
+            Universitas Bale Bandung -
+            Teknik Informatika
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
